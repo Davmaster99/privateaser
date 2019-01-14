@@ -1,5 +1,5 @@
 'use strict';
-
+/*jslint node: true */
 //list of bats
 //useful for ALL 5 steps
 //could be an array of objects that you fetched from api or database
@@ -35,6 +35,7 @@ const events = [{
   'options': {
     'deductibleReduction': false
   },
+    
   'price': 0,
   'commission': {
     'insurance': 0,
@@ -149,3 +150,32 @@ const actors = [{
 console.log(bars);
 console.log(events);
 console.log(actors);
+
+function price( bars , events) { 
+
+ 
+  for(var i; i < events.length; i++)
+  { 
+    var index = 0;
+    while(index < bars.length || events[i].barId != bars[index].id )
+        {
+            index++;
+        }
+    var people_component = events[i].persons * bars[index].pricePerPerson;
+    var time_event = events[i].time * bars[index].pricePerHour;
+    events[i].price = people_component + time_event;
+      
+  //document.write("")
+  }
+
+}
+
+price(bars, events);
+
+
+/*
+function getBar(id) {
+return bars.find(bar => bar.id === id);
+}
+
+*/
